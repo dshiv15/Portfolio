@@ -119,7 +119,7 @@
 "use client";
 import { ReactNode } from 'react';
 import { useState } from 'react';
-import { FaGlobe, FaMap, FaChartBar, FaFileInvoiceDollar, FaCloudSun, FaCalendarAlt, FaPlane, FaUniversity } from 'react-icons/fa';
+import { FaGlobe, FaMap, FaChartBar, FaFileInvoiceDollar, FaCloudSun, FaCalendarAlt, FaPlane, FaUniversity, FaRegCalendarCheck } from 'react-icons/fa';
 
 type Project = {
   title: string;
@@ -182,7 +182,7 @@ export default function Projects() {
       title: "Travel Tracker",
       date: "Nov 2023",
       description: "A travel management application that helps users track visited locations, plan future trips, and share travel experiences with an integrated journal feature.",
-      features: ["Trip planning", "Location tracking", "Travel statistics", "Photo integration"],
+      features: ["Trip planning", "Location tracking", "Travel statistics"],
       technologies: ["React", "MongoDB", "Node.js", "Express", "Google Maps API"],
       github: "https://github.com/dshiv15/Travel-Tracker",
       icon: <FaCalendarAlt size={30} className="text-blue-600" />,  
@@ -204,6 +204,15 @@ export default function Projects() {
       technologies: ["Java", "OOP", "Database Management", "Security Protocols"],
       github: "https://github.com/dshiv15/Banking-Project",
       icon: <FaUniversity size={30} className="text-blue-600" />,  
+    },
+    {
+      title: "Event Management System",
+      date: "May 2023",
+      description: "A web application offering separate user and admin interfaces for efficient event venue management.",
+      features: ["Account management", "Transaction processing", "Balance checking", "Insufficient funds validation"],
+      technologies: ["PHP", "Web Development", "User Authentication", "Email Notifications"],
+      github: "https://github.com/dshiv15/Event_Management_System",
+      icon: <FaRegCalendarCheck size={30} className="text-blue-600" />,  
     }
   ];
 

@@ -117,9 +117,9 @@
 
 
 "use client";
-import { ReactNode } from "react";
-import { useState } from "react";
-import { FaGlobe, FaChartBar, FaMap, FaFileInvoiceDollar, FaCloudSun, FaCalendarAlt, FaPlane, FaUniversity } from "react-icons/fa";
+import { ReactNode } from 'react';
+import { useState } from 'react';
+import { FaGlobe, FaMap, FaChartBar, FaFileInvoiceDollar, FaCloudSun, FaCalendarAlt, FaPlane, FaUniversity } from 'react-icons/fa';
 
 type Project = {
   title: string;
@@ -140,7 +140,7 @@ export default function Projects() {
       features: ["CRUD operations", "Keyword search", "Date filters", "User favorites"],
       technologies: ["JavaScript", "ReactJS", "MongoDB", "ExpressJS"],
       github: "https://github.com/dshiv15/Explora",
-      icon: <FaGlobe size={30} className="text-blue-600" />,
+      icon: <FaGlobe size={30} className="text-blue-600" />,  
     },
     {
       title: "Wayfinder",
@@ -149,7 +149,7 @@ export default function Projects() {
       features: ["Route optimization", "Location bookmarking", "Travel time estimation", "Points of interest"],
       technologies: ["React Native", "Google Maps API", "Node.js", "Firebase"],
       github: "https://github.com/dshiv15/Wayfinder",
-      icon: <FaMap size={30} className="text-blue-600" />,
+      icon: <FaMap size={30} className="text-blue-600" />,  
     },
     {
       title: "Sales Data Analysis",
@@ -158,7 +158,7 @@ export default function Projects() {
       features: ["Visual representation of sales trends", "Forecasting analysis", "Key metrics visualization", "Insights dashboard"],
       technologies: ["Python", "Pandas", "NumPy", "Matplotlib", "Seaborn"],
       github: "https://github.com/dshiv15/Sales_Data_Analysis",
-      icon: <FaChartBar size={30} className="text-blue-600" />,
+      icon: <FaChartBar size={30} className="text-blue-600" />,  
     },
     {
       title: "FinXtract",
@@ -167,7 +167,7 @@ export default function Projects() {
       features: ["Transaction categorization", "Budget tracking", "Expense analysis", "Financial reports"],
       technologies: ["Python", "Machine Learning", "Flask", "SQLAlchemy"],
       github: "https://github.com/dshiv15/FinXtract",
-      icon: <FaFileInvoiceDollar size={30} className="text-blue-600" />,
+      icon: <FaFileInvoiceDollar size={30} className="text-blue-600" />,  
     },
     {
       title: "ClimaCast",
@@ -176,7 +176,7 @@ export default function Projects() {
       features: ["Real-time weather updates", "Weekly forecasts", "Weather alerts", "Location tracking"],
       technologies: ["JavaScript", "React", "Weather API", "Geolocation"],
       github: "https://github.com/dshiv15/ClimaCast",
-      icon: <FaCloudSun size={30} className="text-blue-600" />,
+      icon: <FaCloudSun size={30} className="text-blue-600" />,  
     },
     {
       title: "Travel Tracker",
@@ -185,7 +185,7 @@ export default function Projects() {
       features: ["Trip planning", "Location tracking", "Travel statistics", "Photo integration"],
       technologies: ["React", "MongoDB", "Node.js", "Express", "Google Maps API"],
       github: "https://github.com/dshiv15/Travel-Tracker",
-      icon: <FaCalendarAlt size={30} className="text-blue-600" />,
+      icon: <FaCalendarAlt size={30} className="text-blue-600" />,  
     },
     {
       title: "Airport Management",
@@ -194,7 +194,7 @@ export default function Projects() {
       features: ["Flight tracking", "Gate management", "Passenger information", "Staff scheduling"],
       technologies: ["Java", "Spring Boot", "MySQL", "RESTful APIs"],
       github: "https://github.com/dshiv15/Airport-Management",
-      icon: <FaPlane size={30} className="text-blue-600" />,
+      icon: <FaPlane size={30} className="text-blue-600" />,  
     },
     {
       title: "Banking Project",
@@ -203,9 +203,19 @@ export default function Projects() {
       features: ["Account management", "Transaction processing", "Balance checking", "Insufficient funds validation"],
       technologies: ["Java", "OOP", "Database Management", "Security Protocols"],
       github: "https://github.com/dshiv15/Banking-Project",
-      icon: <FaUniversity size={30} className="text-blue-600" />,
+      icon: <FaUniversity size={30} className="text-blue-600" />,  
     }
   ];
+
+  const [expanded, setExpanded] = useState<boolean[]>(Array(projects.length).fill(false));
+
+  const toggleReadMore = (index: number) => {
+    setExpanded(prevState => {
+      const newExpanded = [...prevState];
+      newExpanded[index] = !newExpanded[index];
+      return newExpanded;
+    });
+  };
 
   return (
     <section id="projects" className="py-20 lg:py-32">
@@ -213,33 +223,31 @@ export default function Projects() {
         <h3 className="font-semibold text-3xl sm:text-4xl md:text-5xl text-blue-400">Projects</h3>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {projects.map((project, index) => {
-          const [readMore, setReadMore] = useState(false);
-          return (
-            <div
-              key={index}
-              className="p-6 flex flex-col gap-4 rounded-lg border border-blue-700 text-center cursor-pointer group hover:border-blue-400 transition duration-200"
+        {projects.map((project, index) => (
+          <div
+            key={index}
+            className="p-6 flex flex-col gap-4 rounded-lg border border-blue-700 text-center cursor-pointer group hover:border-blue-400 transition duration-200"
+          >
+            <div className="mb-2">{project.icon}</div>
+            <h3 className="font-medium text-xl sm:text-2xl">{project.title}</h3>
+            <p className="text-gray-300">
+              {expanded[index] ? project.description : `${project.description.substring(0, 100)}...`}
+            </p>
+            <button
+              onClick={() => toggleReadMore(index)}
+              className="text-blue-400 hover:text-blue-300 transition-colors"
             >
-              <div className="mb-2">{project.icon}</div>
-              <h3 className="font-medium text-xl sm:text-2xl">{project.title}</h3>
-              <p className="text-gray-300 line-clamp-3">
-                {readMore ? project.description : `${project.description.substring(0, 100)}...`}
-              </p>
-              <button
-                onClick={() => setReadMore(!readMore)}
-                className="text-blue-400 hover:text-blue-300 transition-colors"
-              >
-                {readMore ? "Read Less" : "Read More"}
-              </button>
-              <div className="mt-auto pt-4">
-                <a href={project.github} className="text-blue-400 hover:text-blue-300 transition-colors" target="_blank" rel="noopener noreferrer">
-                  View Code →
-                </a>
-              </div>
+              {expanded[index] ? "Read Less" : "Read More"}
+            </button>
+            <div className="mt-auto pt-4">
+              <a href={project.github} className="text-blue-400 hover:text-blue-300 transition-colors" target="_blank" rel="noopener noreferrer">
+                View Code →
+              </a>
             </div>
-          );
-        })}
+          </div>
+        ))}
       </div>
     </section>
   );
 }
+

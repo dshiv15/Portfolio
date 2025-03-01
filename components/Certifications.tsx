@@ -43,7 +43,7 @@ export default function Certifications() {
       link: "https://github.com/dshiv15/Certificates/blob/main/DA-IICT%20Hackathon%20.pdf",
     },
     {
-      title: "GirlScript Summer of Code 2024 Contributor",
+      title: "GSSOC 2024 Contributor",
       icon: "fas fa-users",
       color: "text-pink-400",
       link: "https://github.com/dshiv15/Certificates/blob/main/GSSOC_contributor_badge_2024.png",
